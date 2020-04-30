@@ -1,0 +1,23 @@
+<div *ngIf="loading" class="loading">
+    <mat-spinner></mat-spinner>
+</div>
+
+<app-header></app-header>
+<div class="container">
+    <div class="row">
+
+        <router-outlet></router-outlet>
+    </div>
+</div>
+
+
+<!-- <div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <app-svg-to-png-demo></app-svg-to-png-demo>
+        </div>
+        <div class="col-md-4">
+            <app-svg-to-png></app-svg-to-png>
+        </div>
+    </div>
+</div> -->
