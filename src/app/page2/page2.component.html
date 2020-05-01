@@ -1,7 +1,62 @@
 <app-export-svg [dataId]="id">
+    <ngx-graph class="chart-container" [view]="[500, 550]" [links]="[
+    {
+      id: 'a',
+      source: 'first',
+      target: 'second',
+      label: 'is parent of'
+    }, {
+      id: 'b',
+      source: 'first',
+      target: 'c1',
+      label: 'custom label'
+    }, {
+      id: 'd',
+      source: 'first',
+      target: 'c2',
+      label: 'custom label'
+    }, {
+      id: 'e',
+      source: 'c1',
+      target: 'd',
+      label: 'first link'
+    }, {
+      id: 'f',
+      source: 'c1',
+      target: 'd',
+      label: 'second link'
+    }
+  ]" [nodes]="[
+    {
+      id: 'first',
+      label: 'A'
+    }, {
+      id: 'second',
+      label: 'B'
+    }, {
+      id: 'c1',
+      label: 'C1'
+    }, {
+      id: 'c2',
+      label: 'C2'
+    }, {
+      id: 'd',
+      label: 'D'
+    }
+  ]" [clusters]="[
+    {
+      id: 'third',
+      label: 'Cluster node',
+      childNodeIds: ['c1', 'c2']
+    }
+  ]" layout="dagreCluster">
+    </ngx-graph>
+</app-export-svg>
+
+<!-- <app-export-svg [dataId]="id">
     <svg version="1.1" baseProfile="full" width="300" height="200" xmlns="http://www.w3.org/2000/svg">
         <rect width="100%" height="100%" fill="red" />
         <circle cx="150" cy="100" r="80" fill="green" />
         <text x="150" y="125" font-size="60" text-anchor="middle" fill="white">SVG</text>
-    </svg>
-</app-export-svg>
+    </svg> -->
+<!-- </app-export-svg> -->

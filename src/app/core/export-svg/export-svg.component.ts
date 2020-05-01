@@ -15,6 +15,14 @@ export class ExportSvgComponent implements OnInit {
 
   export(id) {
     var svgString = document.getElementById(id).innerHTML;
-    this.exportSvgToPngService.export(svgString);
+
+    const data = svgString.match(/<svg.*>(.|\n)*?<\/svg>/g) || [];
+    const svgNewString = data[0];
+
+    document.getElementById('latest-svg').innerHTML = svgNewString;
+    var svgLatestString = document.getElementById('latest-svg').innerHTML;
+    // console.log('svgLatestString', svgLatestString)
+
+    this.exportSvgToPngService.export(svgLatestString);
   }
 }

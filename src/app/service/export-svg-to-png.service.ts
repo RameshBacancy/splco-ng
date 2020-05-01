@@ -7,11 +7,13 @@ declare var saveAs: any;
 })
 export class ExportSvgToPngService {
 
-  constructor(private spinnerService: SpinnerService, private ngZone:NgZone) { }
+  constructor(private spinnerService: SpinnerService, private ngZone: NgZone) { }
+  pngData
 
   export(svgString) {
+    this.pngData = svgString;
     this.spinnerService.openSpinner();
-    var width, height;
+    var width = 400, height = 400;
 
     // var svgString = document.getElementById('export-SVG').innerHTML;
     let svgTag = (svgString.match(/<svg .*?>/g) || []);
@@ -30,43 +32,42 @@ export class ExportSvgToPngService {
       }
     }
     // this.svgString2Image(svgString, 2 * width, 2 * height, 'png', this.save);
-    this.svgString2Image(svgString, 2 * width, 2 * height, 'png',  (dataBlob, filesiz) => this.ngZone.run(() => {
+    this.svgString2Image(this.pngData, 2 * width, 2 * height, 'png', (dataBlob, filesize) => this.ngZone.run(() => {
       this.spinnerService.closeSpinner();
-
+      console.log('3')
       const url = window.URL.createObjectURL(dataBlob);
       const anchor = document.createElement("a");
       anchor.download = 'D3 vis exported to PNG.png';
       anchor.href = url;
       anchor.click();
     }));
-
-   
-
-
   }
 
-
-  
-
-  svgString2Image(svgString, width, height, forma, callback) {
+  svgString2Image(pngData, width, height, format, callback) {
 
     var format = format ? format : 'png';
-    var imgsrc = 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(svgString)));
+    var imgsrc = 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(pngData)));
     var canvas = document.createElement("canvas");
     var context = canvas.getContext("2d");
 
     canvas.width = width;
     canvas.height = height;
 
+    var dl = document.createElement("a");
+    document.body.appendChild(dl);
+    dl.setAttribute("href", imgsrc);
+    dl.setAttribute("download", "Demo.svg");
+    dl.click();
+
+    this.spinnerService.closeSpinner();
     var image = new Image();
-    image.onload = function () {
+    image.onload = () => {
       context.clearRect(0, 0, width, height);
       context.drawImage(image, 0, 0, width, height);
-
       canvas.toBlob(function (blob) {
         var filesize = Math.round(blob['length'] / 1024) + ' KB';
         if (callback) {
-           callback(blob, filesize); 
+          callback(blob, filesize);
         }
       });
     };
