@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ExportSvgToPngService } from 'src/app/service/export-svg-to-png.service';
 import html2canvas from 'html2canvas';
 import { SpinnerService } from 'src/app/service/spinner.service';
 
@@ -12,23 +11,24 @@ export class ExportSvgComponent implements OnInit {
   @Input() dataId;
   imgSrc = '';
 
-  constructor(
-    public exportSvgToPngService: ExportSvgToPngService,
-    public spinnerService: SpinnerService,
-  ) { }
+  constructor(public spinnerService: SpinnerService) { }
 
   ngOnInit(): void { }
 
   export(id) {
-    var s = document.getElementById(id).getElementsByTagName("svg");
-    s[0].style.fill = "transparent";
-    s[0].style.stroke = "black";
-
-   
     this.spinnerService.openSpinner();
     this.imgSrc = '';
+    let svg = document.querySelector('svg');
+    let g = document.querySelector('g');
+    svg.style.fill = "none";
+    svg.style.stroke = "black";
+    g.style.transform = "matrix(1,0,0,1,0,0)";
+    setTimeout(() => {
+      svg.style.display = "none";
+    }, 0);
+    this.imgSrc = 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(this.imgSrc)));
+    let svgString = document.getElementById(id);
 
-    var svgString = document.getElementById(id);
     html2canvas(svgString).then(canvas => {
       this.imgSrc = canvas.toDataURL();
       const anchor = document.createElement("a");
@@ -36,6 +36,10 @@ export class ExportSvgComponent implements OnInit {
       anchor.href = this.imgSrc;
       anchor.click();
       this.spinnerService.closeSpinner();
+      svg.style.removeProperty("fill");
+      svg.style.removeProperty("stroke");
+      g.style.removeProperty("transform");
+      svg.style.display = "block";
     });
   }
 }
