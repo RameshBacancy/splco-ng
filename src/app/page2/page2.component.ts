@@ -10,7 +10,6 @@ export class Page2Component implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
 }

@@ -7,11 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class Page3Component implements OnInit {
 
-  clientId="client-svg-to-png-demo";
+  clientId = "client-svg-to-png-demo";
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
 }
