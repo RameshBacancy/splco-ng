@@ -1,28 +1,111 @@
 <app-export-svg [dataId]="id"></app-export-svg>
 
 <div id="{{id}}">
-  <ngx-graph class="chart-container" [view]="[500, 200]" [links]="[
+  <ngx-graph class="chart-container" [view]="[500, 500]" [links]="[
   {
     id: 'a',
-    source: 'first',
-    target: 'second',
+    source: 'one',
+    target: 'two',
     label: 'is parent of'
-  }, {
+  }, 
+  {
     id: 'b',
-    source: 'first',
-    target: 'third',
+    source: 'one',
+    target: 'three',
+    label: 'custom label'
+  },
+  {
+    id: 'c',
+    source: 'two',
+    target: 'four',
+    label: 'custom label'
+  },
+  {
+    id: 'd',
+    source: 'two',
+    target: 'five',
+    label: 'custom label'
+  },
+  {
+    id: 'e',
+    source: 'three',
+    target: 'six',
+    label: 'custom label'
+  },
+  {
+    id: 'f',
+    source: 'three',
+    target: 'seven',
+    label: 'custom label'
+  },
+  {
+    id: 'g',
+    source: 'four',
+    target: 'eight',
+    label: 'custom label'
+  },
+  {
+    id: 'h',
+    source: 'four',
+    target: 'nine',
+    label: 'custom label'
+  },
+  {
+    id: 'i',
+    source: 'five',
+    target: 'ten',
+    label: 'custom label'
+  },
+  {
+    id: 'j',
+    source: 'five',
+    target: 'eleven',
     label: 'custom label'
   }
 ]" [nodes]="[
   {
-    id: 'first',
+    id: 'one',
     label: 'A'
-  }, {
-    id: 'second',
+  }, 
+  {
+    id: 'two',
     label: 'B'
-  }, {
-    id: 'third',
+  }, 
+  {
+    id: 'three',
     label: 'C'
+  },
+  {
+    id: 'four',
+    label: 'D'
+  },
+  {
+    id: 'five',
+    label: 'E'
+  },
+  {
+    id: 'six',
+    label: 'F'
+  },
+  {
+    id: 'seven',
+    label: 'G'
+  },
+  {
+    id: 'eight',
+    label: 'H'
+  },
+  {
+    id: 'nine',
+    label: 'I'
+  },
+  {
+    id: 'ten',
+    label: 'J'
+  },
+  {
+    id: 'eleven',
+    label: 'K'
   }
 ]">
   </ngx-graph>
