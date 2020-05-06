@@ -21,8 +21,10 @@ export class ExportSvgComponent implements OnInit {
   export(id) {
     this.spinnerService.openSpinner();
     this.imgSrc = '';
-
+    
     this.svg = document.querySelector('svg');
+    this.svg.setAttribute("width", "1500");
+    this.svg.setAttribute("height", "13000");
     this.g = document.querySelector('g');
     this.svg.style.fill = "white";
     this.svg.style.stroke = "black";
