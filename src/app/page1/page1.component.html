@@ -1,7 +1,7 @@
 <app-export-svg [dataId]="id"></app-export-svg>
 
-<div id="{{id}}">
-  <ngx-graph class="chart-container" [draggingEnabled]="false" [enableZoom]="false" [view]="[1500, 13000]"
+  <div id="{{id}}">
+  <ngx-graph class="chart-container" [draggingEnabled]="false" [view]="[1500, 13000]"
     [links]="linkArray" [nodes]="nodesArray" layout="dagreCluster">
 
     <ng-template #defsTemplate>
