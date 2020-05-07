@@ -1,4 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; }
+html,
+body {
+    height: 100%;
+}
+body {
+    margin: 0;
+}
+
+.scroll-ngx-graph {
+    height: 300px;
+    width: 300px;
+    overflow: auto;
+}

@@ -21,15 +21,16 @@ export class ExportSvgComponent implements OnInit {
   export(id) {
     this.spinnerService.openSpinner();
     this.imgSrc = '';
-    
+
     this.svg = document.querySelector('svg');
-    this.svg.setAttribute("width", "1500");
-    this.svg.setAttribute("height", "13000");
     this.g = document.querySelector('g');
     this.svg.style.fill = "white";
     this.svg.style.stroke = "black";
     this.g.removeAttribute("transform");
     this.pngString = document.getElementById(id);
+    this.pngString.classList.remove("scroll-ngx-graph");
+    this.svg.setAttribute("width", this.pngString.scrollWidth);
+    this.svg.setAttribute("height", this.pngString.scrollHeight);
 
     html2canvas(this.pngString).then(canvas => {
       this.imgSrc = canvas.toDataURL();
@@ -56,5 +57,6 @@ export class ExportSvgComponent implements OnInit {
     document.body.appendChild(downloadLink);
     downloadLink.click();
     document.body.removeChild(downloadLink);
+    document.getElementById(id).classList.add("scroll-ngx-graph");
   }
 }
